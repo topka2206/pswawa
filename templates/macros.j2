@@ -1,0 +1,100 @@
+{# ============ Общие блоки. Используются на всех языках ============ #}
+
+{# Кнопка в Instagram Direct. item: ps5 / ps5pro / ps4xbox / vr2 / hookah / general — уходит в GA4 #}
+{% macro ig(settings, text, item="general", place="", cls="btn btn-primary", icon=true, hero=false) -%}
+<a class="{{ cls }}" href="{{ settings.instagram_dm }}" target="_blank" rel="noopener" data-ig data-item="{{ item }}" data-place="{{ place }}"{% if hero %} data-hero-cta{% endif %}>{% if icon %}<svg aria-hidden="true"><use href="#i-chat"/></svg>{% endif %}{{ text }}</a>
+{%- endmacro %}
+
+{% macro head(eyebrow, title, id, lead=None, cls="") -%}
+<div class="section-head reveal">
+  <p class="eyebrow {{ cls }}">{{ eyebrow }}</p>
+  <h2 class="h2" id="{{ id }}">{{ title }}</h2>
+  {% if lead %}<p>{{ lead }}</p>{% endif %}
+</div>
+{%- endmacro %}
+
+{# Значение цены: число или «в Direct», если цена не задана #}
+{% macro pv(v, ui, small=None) -%}
+{% if v is none %}<span class="na">{{ ui.in_dm }}</span>{% else %}{{ v|zl }}{% if small %}<small>{{ small }}</small>{% endif %}{% endif %}
+{%- endmacro %}
+
+{# Короткая таблица приставок (главная): 1 / 2 / 3+ дня #}
+{% macro consoles_short(prices, ui) -%}
+<table class="ptable">
+  <thead><tr><th scope="col">{{ ui.col_model }}</th><th scope="col">{{ ui.terms.d1 }}</th><th scope="col">{{ ui.terms.d2 }}</th><th scope="col">{{ ui.terms.d3 }}</th></tr></thead>
+  <tbody>
+  {% for c in prices.consoles %}
+    <tr><td>{{ c.name }}</td><td{% if c.id == 'ps5' %} class="acc"{% endif %}>{{ pv(c.d1, ui) }}</td><td>{{ pv(c.d2, ui, ((c.d2 * 2)|zl ~ ' ' ~ ui.total) if c.d2 else None) }}</td><td>{{ pv(c.d3, ui) }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{%- endmacro %}
+
+{# Полная таблица приставок (страница аренды): сроки — строки, модели — колонки #}
+{% macro consoles_full(prices, ui) -%}
+<div class="ptable-wrap">
+<table class="ptable ptable-full">
+  <thead><tr><th scope="col">{{ ui.col_term }}</th>{% for c in prices.consoles %}<th scope="col">{{ c.name }}</th>{% endfor %}</tr></thead>
+  <tbody>
+    <tr><td>{{ ui.terms.d1 }}</td>{% for c in prices.consoles %}<td class="acc">{{ pv(c.d1, ui) }}</td>{% endfor %}</tr>
+    <tr><td>{{ ui.terms.d2 }}</td>{% for c in prices.consoles %}<td>{{ pv(c.d2, ui, ((c.d2 * 2)|zl ~ ' ' ~ ui.total) if c.d2 else None) }}</td>{% endfor %}</tr>
+    <tr><td>{{ ui.terms.d3 }}</td>{% for c in prices.consoles %}<td>{{ pv(c.d3, ui, ui.per_day) }}</td>{% endfor %}</tr>
+    <tr><td>{{ ui.terms.d5 }}</td>{% for c in prices.consoles %}<td>{{ pv(c.d5, ui, ui.total) }}</td>{% endfor %}</tr>
+    <tr><td>{{ ui.terms.d7 }}</td>{% for c in prices.consoles %}<td>{{ pv(c.d7, ui, ui.total) }}</td>{% endfor %}</tr>
+    <tr><td>{{ ui.terms.d10 }}</td><td colspan="{{ prices.consoles|length }}" class="ind">{{ ui.individual }}</td></tr>
+  </tbody>
+</table>
+</div>
+{%- endmacro %}
+
+{# Таблица «1 день / 2 дня / от 3 дней» для VR и кальяна #}
+{% macro simple_prices(p, ui, show_d2=False) -%}
+<table class="ptable ptable-2">
+  <thead><tr><th scope="col">{{ ui.terms.d1 }}</th>{% if show_d2 %}<th scope="col">{{ ui.terms.d2 }}</th>{% endif %}<th scope="col">{{ ui.terms.d3_long }}</th></tr></thead>
+  <tbody><tr><td class="acc">{{ p.d1|zl }} zł</td>{% if show_d2 %}<td>{% if p.d2 %}{{ p.d2|zl }} zł<small>{{ ui.per_day }}</small>{% else %}<span class="na">{{ ui.in_dm }}</span>{% endif %}</td>{% endif %}<td>{{ p.d3|zl }} zł<small>{{ ui.per_day }}</small></td></tr></tbody>
+</table>
+{%- endmacro %}
+
+{% macro faq_list(items) -%}
+<div class="faq">
+{% for f in items %}
+  <details class="reveal"><summary>{{ f.q }}</summary><div class="a"><p>{{ f.a }}</p></div></details>
+{% endfor %}
+</div>
+{%- endmacro %}
+
+{% macro faq_section(items, ui, eyebrow=None, title=None) -%}
+{% if items %}
+<section class="section" id="faq" aria-labelledby="h-faq">
+  <div class="wrap">
+    {{ head(eyebrow or ui.faq_eyebrow, title or ui.faq_title, "h-faq") }}
+    {{ faq_list(items) }}
+  </div>
+</section>
+{% endif %}
+{%- endmacro %}
+
+{% macro game_chips(list, release) -%}
+<ul class="games reveal">
+{% for g in list %}
+  <li{% if g.new %} class="new" data-date="{{ release }}"{% endif %}>{{ g.name }}</li>
+{% endfor %}
+</ul>
+{%- endmacro %}
+
+{# Компактный «под-герой» внутренних страниц #}
+{% macro subhero(ui, settings, h1, lead, icon, cls, item, cta, extra=None) -%}
+<section class="subhero {{ cls }}" aria-labelledby="h1">
+  <div class="wrap subhero-grid">
+    <div class="subhero-copy">
+      <h1 class="h1" id="h1">{{ h1 }}</h1>
+      <p class="lead">{{ lead }}</p>
+      {% if extra %}<p class="subhero-extra">{{ extra }}</p>{% endif %}
+      {{ ig(settings, cta, item, "hero", hero=true) }}
+    </div>
+    <div class="subhero-art {{ 'p-smoke' if cls == 'is-hookah' else 'p-scan' }}" aria-hidden="true">
+      <svg class="subhero-icon"><use href="#{{ icon }}"/></svg>
+    </div>
+  </div>
+</section>
+{%- endmacro %}

@@ -1,0 +1,127 @@
+# Админка ps.wawa (Decap CMS). Открывается по адресу /admin
+# Каждое сохранение = коммит в GitHub → Netlify пересобирает сайт за ~1 минуту.
+backend:
+  name: github
+  repo: OWNER/ps-wawa        # [УТОЧНИТЬ] имя GitHub-аккаунта/репозитория
+  branch: main
+  base_url: https://api.netlify.com   # вход через GitHub OAuth, настроенный в Netlify
+
+locale: ru
+site_url: https://ps-wawa.pl
+display_url: https://ps-wawa.pl
+media_folder: static/assets/img/uploads
+public_folder: /assets/img/uploads
+
+collections:
+  - name: data
+    label: Данные сайта
+    editor: { preview: false }
+    files:
+      # ---------- ЦЕНЫ ----------
+      - name: prices
+        label: Цены
+        file: content/prices.json
+        format: json
+        fields:
+          - label: Приставки
+            name: consoles
+            widget: list
+            allow_add: true
+            summary: "{{name}} — {{d1}} zł"
+            fields:
+              - { label: "ID (для аналитики, латиницей: ps5, ps5pro, ps4xbox)", name: id, widget: string }
+              - { label: Название, name: name, widget: string }
+              - { label: "1 день, zł", name: d1, widget: number, value_type: int }
+              - { label: "2 дня — цена ЗА ДЕНЬ, zł", name: d2, widget: number, value_type: int, required: false }
+              - { label: "3+ дня — цена за день, zł", name: d3, widget: number, value_type: int }
+              - { label: "5 дней — ИТОГО, zł (пусто = «в Direct»)", name: d5, widget: number, value_type: int, required: false }
+              - { label: "7 дней — ИТОГО, zł (пусто = «в Direct»)", name: d7, widget: number, value_type: int, required: false }
+          - { label: "Залог за приставку, zł (текст, напр. 300–400)", name: console_deposit, widget: string }
+          - label: PS VR2
+            name: vr
+            widget: object
+            fields:
+              - { label: "1 день, zł", name: d1, widget: number, value_type: int }
+              - { label: "2 дня — за день, zł (пусто = «в Direct»)", name: d2, widget: number, value_type: int, required: false }
+              - { label: "3+ дня — за день, zł", name: d3, widget: number, value_type: int }
+              - { label: "Скидка PS5 + VR2, %", name: bundle_discount, widget: number, value_type: int }
+          - label: Кальян
+            name: hookah
+            widget: object
+            fields:
+              - { label: "1 день, zł", name: d1, widget: number, value_type: int }
+              - { label: "2 дня — за день, zł (пусто = «в Direct»)", name: d2, widget: number, value_type: int, required: false }
+              - { label: "3+ дня — за день, zł", name: d3, widget: number, value_type: int }
+              - { label: "Залог, zł", name: deposit, widget: string }
+              - { label: "Доп. пакет (табак + 3 угля), zł", name: addon_price, widget: number, value_type: int }
+
+      # ---------- FAQ (RU) ----------
+      - name: faq_ru
+        label: Частые вопросы (RU)
+        file: content/faq.ru.json
+        format: json
+        fields:
+          - label: Вопросы
+            name: items
+            widget: list
+            summary: "{{q}}"
+            fields:
+              - { label: Вопрос, name: q, widget: string }
+              - { label: Ответ, name: a, widget: text }
+              - label: "На каких страницах показывать (на странице «Условия» видны все)"
+                name: pages
+                widget: select
+                multiple: true
+                options:
+                  - { label: Главная, value: home }
+                  - { label: Приставки, value: consoles }
+                  - { label: PS VR2, value: vr }
+                  - { label: Кальян, value: hookah }
+                  - { label: Игры, value: games }
+
+      # ---------- ИГРЫ ----------
+      - name: games
+        label: Игры
+        file: content/games.json
+        format: json
+        fields:
+          - label: Игры
+            name: games
+            widget: list
+            summary: "{{name}}"
+            fields:
+              - { label: Название (только текст, без обложек), name: name, widget: string }
+              - label: Раздел
+                name: group
+                widget: select
+                options:
+                  - { label: Сюжетные хиты, value: story }
+                  - { label: Вдвоём и компанией, value: coop }
+                  - { label: Файтинги, value: fighting }
+                  - { label: Спорт и гонки, value: sport }
+                  - { label: Шутеры, value: shooter }
+                  - { label: Для PS VR2, value: vr }
+              - { label: "Новинка (зелёная плашка с датой)", name: new, widget: boolean, default: false }
+              - { label: "Показывать на главной", name: popular, widget: boolean, default: false }
+
+      # ---------- НАСТРОЙКИ ----------
+      - name: settings
+        label: Настройки и блоки
+        file: content/settings.json
+        format: json
+        fields:
+          - { label: "Домен (не менять без разработчика)", name: domain, widget: string }
+          - { label: Ссылка на Direct, name: instagram_dm, widget: string }
+          - { label: Ссылка на профиль Instagram, name: instagram_profile, widget: string }
+          - { label: Ник в Instagram, name: instagram_handle, widget: string }
+          - { label: "Google Analytics ID (G-…)", name: ga_id, widget: string }
+          - { label: "Дата релиза GTA VI (на плашке)", name: gta_release, widget: string }
+          - label: Блоки на главной
+            name: blocks
+            widget: object
+            fields:
+              - { label: Анонс GTA VI, name: gta, widget: boolean }
+              - { label: "Combo «Приставка + кальян»", name: combo, widget: boolean }
+              - { label: Игры, name: games, widget: boolean }
+              - { label: Почему выбирают ps.wawa, name: why, widget: boolean }
+              - { label: Частые вопросы, name: faq, widget: boolean }

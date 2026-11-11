@@ -1,0 +1,38 @@
+{% extends "base.j2" %}
+{% import "macros.j2" as m %}
+{% set P = prices %}
+{% block main %}
+  <section class="subhero subhero-text" aria-labelledby="h1">
+    <div class="wrap">
+      <h1 class="h1" id="h1">Условия аренды и частые вопросы</h1>
+      <p class="lead">Коротко и без мелкого шрифта: как работает аренда PS5, VR и кальяна, какой залог и как мы привозим и забираем.</p>
+    </div>
+  </section>
+
+  <!-- [УТОЧНИТЬ]: зона и стоимость доставки, часы работы, что нужно для залога, правила при поломке -->
+  <section class="section section-tight" aria-labelledby="h-rules">
+    <div class="wrap">
+      {{ m.head("Условия", "Как работает аренда", "h-rules") }}
+      <div class="terms-grid">
+        <article class="term reveal"><h3 class="h3">Бронь</h3><p>Только через Instagram Direct {{ settings.instagram_handle }}: что берёшь, на сколько, адрес и удобное время. Сайт заказы не принимает.</p></article>
+        <article class="term reveal"><h3 class="h3">Доставка и забор</h3><p>Возим по всей Варшаве. Время доставки и забора согласуем в Direct заранее.</p></article>
+        <article class="term reveal"><h3 class="h3">Залог</h3><p>Возвратный: {{ P.console_deposit }} zł за приставку в зависимости от модели и {{ P.hookah.deposit }} zł за кальян. Возвращаем, когда забираем технику.</p></article>
+        <article class="term reveal"><h3 class="h3">Цены</h3><p>Цена на сайте = цена на пороге. Чем дольше срок, тем дешевле день. <a href="{{ url('consoles') }}">Цены на приставки</a>, <a href="{{ url('vr') }}">VR</a>, <a href="{{ url('hookah') }}">кальян</a>.</p></article>
+        <article class="term reveal"><h3 class="h3">Подключение</h3><p>Приставку подключим к телевизору и Wi‑Fi сами. Кальян приезжает с готовыми чашами.</p></article>
+        <article class="term reveal"><h3 class="h3">Возврат</h3><p>Мыть и упаковывать ничего не нужно. Напиши, когда удобно, — заберём.</p></article>
+        <article class="term term-18 reveal"><h3 class="h3"><span class="badge-18">18+</span> Кальяны</h3><p>Только для лиц старше 18 лет. Курьер проверяет документ при доставке.</p></article>
+        <article class="term reveal"><h3 class="h3">Если что-то не так</h3><p>Геймпад не работает, игра не запускается — пиши в Direct сразу, разберёмся.</p></article>
+      </div>
+    </div>
+  </section>
+
+  {{ m.faq_section(faq, ui, title="Все вопросы и ответы") }}
+
+  <section class="section">
+    <div class="wrap final reveal">
+      <h2 class="h2">Остались вопросы?</h2>
+      <p>Напиши — ответим по-русски или по-украински.</p>
+      {{ m.ig(settings, "Написать в Direct", "general", "final") }}
+    </div>
+  </section>
+{% endblock %}

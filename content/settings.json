@@ -1,0 +1,15 @@
+{
+  "domain": "https://ps-wawa.pl",
+  "instagram_dm": "https://ig.me/m/ps.wawa",
+  "instagram_profile": "https://www.instagram.com/ps.wawa/",
+  "instagram_handle": "@ps.wawa",
+  "ga_id": "G-XXXXXXX",
+  "gta_release": "19.11",
+  "blocks": {
+    "gta": true,
+    "combo": true,
+    "games": true,
+    "why": true,
+    "faq": true
+  }
+}

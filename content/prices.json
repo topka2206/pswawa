@@ -1,0 +1,10 @@
+{
+  "consoles": [
+    {"id": "ps4xbox", "name": "PS4 Pro / Xbox", "d1": 80, "d2": 70, "d3": 55, "d5": 220, "d7": 250},
+    {"id": "ps5", "name": "PS5", "d1": 100, "d2": 80, "d3": 60, "d5": 250, "d7": null},
+    {"id": "ps5pro", "name": "PS5 Pro", "d1": 110, "d2": 85, "d3": 65, "d5": 250, "d7": 290}
+  ],
+  "console_deposit": "300–400",
+  "vr": {"d1": 90, "d2": null, "d3": 50, "bundle_discount": 20},
+  "hookah": {"d1": 140, "d2": null, "d3": 60, "deposit": "300", "addon_price": 30}
+}

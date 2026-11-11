@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="{{ lang }}" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>{{ page.title }}</title>
+<meta name="description" content="{{ page.description }}">
+{% if key == "404" %}
+<meta name="robots" content="noindex,follow">
+{% else %}
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<link rel="canonical" href="{{ page_url }}">
+{% for l, href in alternates.items() %}
+<link rel="alternate" hreflang="{{ l }}" href="{{ href }}">
+{% endfor %}
+<link rel="alternate" hreflang="x-default" href="{{ abs_url(key, default_lang) }}">
+
+<!-- Open Graph: превью ссылки в Instagram, Telegram, WhatsApp, Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ps.wawa">
+<meta property="og:locale" content="{{ ui.og_locale }}">
+<meta property="og:url" content="{{ page_url }}">
+<meta property="og:title" content="{{ page.title }}">
+<meta property="og:description" content="{{ page.og_description }}">
+<meta property="og:image" content="{{ site }}/assets/img/og/{{ lang }}-{{ key }}.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ page.og_title }} — ps.wawa">
+<meta name="twitter:card" content="summary_large_image">
+{% endif %}
+
+<meta name="theme-color" content="#0A0A0B">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="preload" href="/assets/fonts/sofia-sans-extra-condensed-{{ 'latin' if lang == 'en' else 'cyrillic' }}-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/onest-{{ 'latin' if lang == 'en' else 'cyrillic' }}-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+{% block preload %}{% endblock %}
+<link rel="stylesheet" href="/assets/css/styles.css">
+<script>document.documentElement.className='js'</script>
+
+{% if settings.ga_id and settings.ga_id != "G-XXXXXXX" %}
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ settings.ga_id }}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','{{ settings.ga_id }}');</script>
+{% endif %}
+
+{% if jsonld %}
+<!-- Структурированные данные (schema.org): их читают Google и AI-поисковики -->
+<script type="application/ld+json">
+{{ jsonld }}
+</script>
+{% endif %}
+</head>
+<body class="page-{{ key }}">
+{{ SPRITE }}
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="{{ url('home') }}" aria-label="{{ ui.home_aria }}">{{ LOGO }}</a>
+    <nav class="nav" aria-label="{{ ui.main_menu }}">
+      {% for k in ["consoles", "vr", "hookah", "games", "terms"] %}
+      <a href="{{ url(k) }}"{% if k == key %} aria-current="page"{% endif %}>{{ ui.nav[k] }}</a>
+      {% endfor %}
+    </nav>
+    {% if enabled_langs|length > 1 %}
+    <div class="lang" aria-label="{{ ui.lang_aria }}">
+      {% for l in enabled_langs %}{% if not loop.first %}<span>·</span>{% endif %}<a href="{{ url(key if key != '404' else 'home', l) }}" hreflang="{{ l }}" lang="{{ l }}"{% if l == lang %} aria-current="true"{% endif %}>{{ {'ru':'RU','uk':'UA','en':'EN'}[l] }}</a>{% endfor %}
+    </div>
+    {% endif %}
+    <a class="btn btn-primary btn-sm header-cta" href="{{ settings.instagram_dm }}" target="_blank" rel="noopener" data-ig data-item="general" data-place="header">{{ ui.book_short }}</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="{{ ui.menu }}"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobile-nav" aria-label="{{ ui.mobile_menu }}">
+  {% for k in ["consoles", "vr", "hookah", "games", "terms"] %}
+  <a href="{{ url(k) }}">{{ ui.nav_mobile_terms if k == "terms" else ui.nav[k] }}</a>
+  {% endfor %}
+</nav>
+
+<main>
+{% if key not in ["home", "404"] %}
+  <nav class="crumbs wrap" aria-label="{{ ui.breadcrumb_aria }}">
+    <a href="{{ url('home') }}">{{ ui.breadcrumb_home }}</a><span aria-hidden="true">/</span><span aria-current="page">{{ page.crumb }}</span>
+  </nav>
+{% endif %}
+{% block main %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="{{ url('home') }}" aria-label="{{ ui.home_aria }}" class="foot-logo">{{ LOGO_DECOR }}</a>
+    <nav class="foot-links" aria-label="{{ ui.footer.nav_aria }}">
+      {% for k in ["consoles", "vr", "hookah", "games", "terms"] %}
+      <a href="{{ url(k) }}">{{ ui.footer.links[k] }}</a>
+      {% endfor %}
+      <a href="{{ settings.instagram_profile }}" target="_blank" rel="noopener" data-ig data-item="general" data-place="footer">Instagram {{ settings.instagram_handle }}</a>
+    </nav>
+    <div class="legal">
+      <p><strong>18+</strong> {{ ui.footer.age }}</p>
+      <p>{{ ui.footer.tm }}</p>
+      <p>{{ ui.footer.copyright }}</p>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <a class="btn btn-primary" href="{{ settings.instagram_dm }}" target="_blank" rel="noopener" data-ig data-item="{% block sticky_item %}general{% endblock %}" data-place="sticky"><svg aria-hidden="true"><use href="#i-chat"/></svg>{{ ui.book }}</a>
+</div>
+
+<script src="/assets/js/main.js" defer></script>
+</body>
+</html>

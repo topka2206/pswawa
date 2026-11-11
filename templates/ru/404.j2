@@ -1,0 +1,18 @@
+{% extends "base.j2" %}
+{% import "macros.j2" as m %}
+{% block main %}
+  <section class="subhero subhero-text notfound" aria-labelledby="h1">
+    <div class="wrap">
+      <p class="big404" aria-hidden="true">404</p>
+      <h1 class="h1" id="h1">Тут пусто</h1>
+      <p class="lead">Такой страницы нет — зато есть приставки и кальяны.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="{{ url('home') }}">На главную</a>
+        {{ m.ig(settings, "Написать в Direct", "general", "404", cls="btn btn-outline", icon=false) }}
+      </div>
+      <nav class="foot-links" aria-label="Популярные страницы">
+        <a href="{{ url('consoles') }}">Аренда PS5</a><a href="{{ url('hookah') }}">Кальян на дом</a><a href="{{ url('games') }}">Игры</a>
+      </nav>
+    </div>
+  </section>
+{% endblock %}

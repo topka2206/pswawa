@@ -1,0 +1,21 @@
+{
+  "games": [
+    {"name": "GTA VI", "group": "story", "new": true, "popular": true},
+    {"name": "EA Sports FC", "group": "sport", "new": false, "popular": true},
+    {"name": "GTA V", "group": "story", "new": false, "popular": true},
+    {"name": "Mortal Kombat 1", "group": "fighting", "new": false, "popular": true},
+    {"name": "It Takes Two", "group": "coop", "new": false, "popular": true},
+    {"name": "Split Fiction", "group": "coop", "new": false, "popular": true},
+    {"name": "Tekken 8", "group": "fighting", "new": false, "popular": true},
+    {"name": "Call of Duty", "group": "shooter", "new": false, "popular": true},
+    {"name": "Spider-Man 2", "group": "story", "new": false, "popular": true},
+    {"name": "God of War Ragnarök", "group": "story", "new": false, "popular": true},
+    {"name": "Gran Turismo 7", "group": "sport", "new": false, "popular": true},
+    {"name": "Red Dead Redemption 2", "group": "story", "new": false, "popular": true},
+    {"name": "Overcooked 2", "group": "coop", "new": false, "popular": false},
+    {"name": "Minecraft", "group": "coop", "new": false, "popular": false},
+    {"name": "Fortnite", "group": "shooter", "new": false, "popular": false},
+    {"name": "Horizon Call of the Mountain", "group": "vr", "new": false, "popular": false},
+    {"name": "Beat Saber", "group": "vr", "new": false, "popular": false}
+  ]
+}

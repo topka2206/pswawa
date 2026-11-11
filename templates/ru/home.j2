@@ -1,0 +1,156 @@
+{% extends "base.j2" %}
+{% import "macros.j2" as m %}
+{% set P = prices %}
+{% set B = settings.blocks %}
+{% block preload %}<link rel="preload" as="image" href="/assets/img/hero-bust-420.webp" imagesrcset="/assets/img/hero-bust-420.webp 420w, /assets/img/hero-bust-631.webp 631w" imagesizes="(min-width:960px) 520px, 90vw" fetchpriority="high">{% endblock %}
+{% block main %}
+  <!-- ============ HERO ============ -->
+  <section class="hero" aria-labelledby="h1">
+    <div class="wrap hero-grid">
+      <div class="hero-visual">
+        <div class="stage">
+          <div class="stripe" aria-hidden="true"></div>
+          <img class="hero-img" src="/assets/img/hero-bust-631.webp" srcset="/assets/img/hero-bust-420.webp 420w, /assets/img/hero-bust-631.webp 631w" sizes="(min-width:960px) 520px, 90vw" width="631" height="692" fetchpriority="high" decoding="async" alt="Античный бюст в игровых наушниках — ps.wawa, аренда PS5 и кальянов в Варшаве">
+          <svg class="el front" viewBox="0 0 24 24" aria-hidden="true" style="width:5cqw;left:14%;top:60%"><use href="#e-spark"/></svg>
+          <svg class="el" viewBox="0 0 24 24" aria-hidden="true" style="width:3.6cqw;right:15%;top:14%"><use href="#e-spark"/></svg>
+          <span class="side l" aria-hidden="true">{{ settings.instagram_handle }}</span>
+          <span class="side r" aria-hidden="true">PS5 · VR2 · 18+</span>
+        </div>
+        <div class="hero-sign">{{ LOGO_DECOR }}</div>
+      </div>
+
+      <div class="hero-copy">
+        <h1 class="h1" id="h1">Аренда PS5 и кальянов с доставкой по <span class="hl">Варшаве</span></h1>
+        <p class="lead">Привезём, подключим и сами заберём. Тебе — только позвать друзей.</p>
+        {{ m.ig(settings, ui.book, "general", "hero", hero=true) }}
+        <nav class="quicknav" aria-label="Разделы страницы">
+          {% if B.gta %}<a class="hot" href="#gta-6">GTA VI</a>{% endif %}
+          <a href="#ceny">Цены</a>
+          <a href="#kak-rabotaet">Как это работает</a>
+          {% if B.games %}<a href="#igry">Игры</a>{% endif %}
+          {% if B.faq %}<a href="#faq">Вопросы</a>{% endif %}
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  {% if B.gta %}
+  <!-- ============ АНОНС GTA VI (включается/выключается в админке: Настройки → Блоки) ============ -->
+  <section class="section section-tight" id="gta-6" aria-labelledby="h-gta">
+    <div class="wrap">
+      <div class="gta reveal">
+        <div class="p-scan" aria-hidden="true"></div>
+        <div class="gta-top"><span class="eyebrow is-game">Новинка</span><span class="gta-date">Релиз {{ settings.gta_release }}</span></div>
+        <h2 class="h2" id="h-gta">Аренда PS5 с <em>GTA VI</em></h2>
+        <div class="gta-body">
+          <p>GTA VI будет на наших PS5 с первого дня. <b>Тебе не нужно ничего покупать</b> — ни приставку за 2500 zł, ни игру. Бронируй выходные заранее: в первые недели разберут всё.</p>
+          {{ m.ig(settings, "Забронировать PS5 с GTA VI", "ps5", "gta", cls="btn btn-lime", icon=false) }}
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- ============ ЧТО ПРИВОЗИМ И ЦЕНЫ ============ -->
+  <section class="section" id="ceny" aria-labelledby="h-offer">
+    <div class="wrap">
+      {{ m.head("Что привозим и сколько стоит", "Цены на аренду PS5, VR и кальяна", "h-offer") }}
+      <div class="offer-grid">
+        <article class="offer is-game reveal">
+          <div class="offer-top">
+            <span class="offer-ico p-scan" aria-hidden="true"><svg><use href="#i-gamepad"/></svg></span>
+            <div><h3 class="h3">Приставки</h3><small>{{ ui.day_price }}, zł</small></div>
+            <a class="go" href="{{ url('consoles') }}" aria-label="Аренда PS5 в Варшаве — подробнее"><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+          {{ m.consoles_short(P, ui) }}
+          <p class="offer-note">В комплекте 2 геймпада и игры на аккаунте. С тебя — только Wi‑Fi.</p>
+          <div class="offer-cta">{{ m.ig(settings, "Хочу PS5 на выходные", "ps5", "price", cls="btn", icon=false) }}</div>
+        </article>
+
+        <article class="offer is-game reveal">
+          <div class="offer-top">
+            <span class="offer-ico p-scan" aria-hidden="true"><svg><use href="#i-vr"/></svg></span>
+            <div><h3 class="h3">PS VR2</h3><small>{{ ui.day_price }}</small></div>
+            <a class="go" href="{{ url('vr') }}" aria-label="Аренда VR в Варшаве — подробнее"><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+          {{ m.simple_prices(P.vr, ui) }}
+          <p class="offer-note">Вместе с PS5 — минус {{ P.vr.bundle_discount }}% на комплект.</p>
+          <div class="offer-cta">{{ m.ig(settings, "Хочу PS5 + VR2", "vr2", "price", cls="btn", icon=false) }}</div>
+        </article>
+
+        <article class="offer is-hookah reveal">
+          <div class="offer-top">
+            <span class="offer-ico p-smoke" aria-hidden="true"><svg><use href="#i-hookah"/></svg></span>
+            <div><h3 class="h3">Кальяны <span class="badge-18" aria-label="{{ ui.age18 }}">18+</span></h3><small>{{ ui.day_price }}</small></div>
+            <a class="go" href="{{ url('hookah') }}" aria-label="Кальян на дом в Варшаве — подробнее"><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+          {{ m.simple_prices(P.hookah, ui) }}
+          <p class="offer-note">2 готовые чаши, уголь, плитка, одноразовые мундштуки. Курьер проверяет документ.</p>
+          <div class="offer-cta">{{ m.ig(settings, "Хочу кальян на вечер", "hookah", "price", cls="btn", icon=false) }}</div>
+        </article>
+      </div>
+      <p class="prices-more reveal">Все цены в zł. Возвратный залог {{ P.console_deposit }} zł. <a href="{{ url('terms') }}">Условия аренды и залог</a></p>
+    </div>
+  </section>
+
+  {% if B.combo %}
+  <section class="section section-flush" aria-label="Приставка и кальян вместе">
+    <div class="wrap">
+      <div class="combo reveal">
+        <div class="combo-text">
+          <h2 class="h3">Приставка + кальян = готовый вечер</h2>
+          <p>Привезём всё одним заходом. Напиши, что берёшь, — посчитаем.</p>
+        </div>
+        {{ m.ig(settings, "Хочу всё сразу", "general", "combo", icon=false) }}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- ============ КАК ЭТО РАБОТАЕТ ============ -->
+  <section class="section" id="kak-rabotaet" aria-labelledby="h-how">
+    <svg class="el how-swoosh" viewBox="0 0 400 200" aria-hidden="true"><use href="#e-swoosh"/></svg>
+    <div class="wrap">
+      {{ m.head("Как это работает", "Три шага — и ты на диване", "h-how") }}
+      <ol class="steps">
+        <li class="step reveal"><span class="step-n" aria-hidden="true">01</span><h3 class="h3">Пишешь в Instagram</h3><p>Что, на сколько и куда везти. По-русски или по-украински.</p></li>
+        <li class="step reveal"><span class="step-n" aria-hidden="true">02</span><h3 class="h3">Привозим и подключаем</h3><p>Приставку — к телеку и Wi‑Fi. Кальян — с готовыми чашами.</p></li>
+        <li class="step reveal"><span class="step-n" aria-hidden="true">03</span><h3 class="h3">Забираем</h3><p>Напиши, когда удобно. Мыть ничего не надо.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  {% if B.games %}
+  <section class="section" id="igry" aria-labelledby="h-games">
+    <div class="wrap">
+      {{ m.head("Игры", "Игры уже на приставке", "h-games", cls="is-game") }}
+      {{ m.game_chips(games|selectattr("popular")|list, settings.gta_release) }}
+      <p class="games-note reveal">Нужна конкретная игра — напиши в Direct, проверим. <a href="{{ url('games') }}">Все игры для PS5 в аренду</a></p>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if B.why %}
+  <section class="section" aria-labelledby="h-why">
+    <div class="wrap">
+      {{ m.head("Наш стандарт", "Почему выбирают ps.wawa", "h-why") }}
+      <ul class="why reveal">
+        <li><b>Чисто</b><span>Мундштуки одноразовые, геймпады протираем после каждого заказа.</span></li>
+        <li><b>Честно</b><span>Цена на сайте = цена на пороге. Залог возвращаем.</span></li>
+        <li><b>На твоём языке</b><span>Пишем по-русски и по-украински, без анкет.</span></li>
+        <li><b>Быстро</b><span>Пара сообщений в Direct — и мы уже едем.</span></li>
+      </ul>
+    </div>
+  </section>
+  {% endif %}
+
+  {{ m.faq_section(faq, ui) }}
+
+  <section class="section">
+    <div class="wrap final reveal">
+      <h2 class="h2">Привезём вечер<span class="dot" aria-hidden="true"></span></h2>
+      <p>Напиши — ответим и привезём.</p>
+      {{ m.ig(settings, ui.book, "general", "final") }}
+    </div>
+  </section>
+{% endblock %}

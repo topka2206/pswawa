@@ -1,0 +1,21 @@
+# Netlify: при каждом изменении в GitHub (в т.ч. из админки) сайт пересобирается
+[build]
+  command = "pip install -r requirements.txt && python3 _src/build.py"
+  publish = "dist"
+
+[build.environment]
+  PYTHON_VERSION = "3.12"
+
+# Кэш для статики
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
