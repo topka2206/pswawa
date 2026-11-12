@@ -2,13 +2,13 @@
 # Каждое сохранение = коммит в GitHub → Netlify пересобирает сайт за ~1 минуту.
 backend:
   name: github
-  repo: OWNER/ps-wawa        # [УТОЧНИТЬ] имя GitHub-аккаунта/репозитория
+  repo: topka2206/pswawa
   branch: main
   base_url: https://api.netlify.com   # вход через GitHub OAuth, настроенный в Netlify
 
 locale: ru
-site_url: https://ps-wawa.pl
-display_url: https://ps-wawa.pl
+site_url: https://pswawa.pl
+display_url: https://pswawa.pl
 media_folder: static/assets/img/uploads
 public_folder: /assets/img/uploads
 
@@ -59,6 +59,54 @@ collections:
       - name: faq_ru
         label: Частые вопросы (RU)
         file: content/faq.ru.json
+        format: json
+        fields:
+          - label: Вопросы
+            name: items
+            widget: list
+            summary: "{{q}}"
+            fields:
+              - { label: Вопрос, name: q, widget: string }
+              - { label: Ответ, name: a, widget: text }
+              - label: "На каких страницах показывать (на странице «Условия» видны все)"
+                name: pages
+                widget: select
+                multiple: true
+                options:
+                  - { label: Главная, value: home }
+                  - { label: Приставки, value: consoles }
+                  - { label: PS VR2, value: vr }
+                  - { label: Кальян, value: hookah }
+                  - { label: Игры, value: games }
+
+      # ---------- FAQ (UA) ----------
+      - name: faq_uk
+        label: Частые вопросы (UA)
+        file: content/faq.uk.json
+        format: json
+        fields:
+          - label: Вопросы
+            name: items
+            widget: list
+            summary: "{{q}}"
+            fields:
+              - { label: Вопрос, name: q, widget: string }
+              - { label: Ответ, name: a, widget: text }
+              - label: "На каких страницах показывать (на странице «Условия» видны все)"
+                name: pages
+                widget: select
+                multiple: true
+                options:
+                  - { label: Главная, value: home }
+                  - { label: Приставки, value: consoles }
+                  - { label: PS VR2, value: vr }
+                  - { label: Кальян, value: hookah }
+                  - { label: Игры, value: games }
+
+      # ---------- FAQ (EN) ----------
+      - name: faq_en
+        label: Частые вопросы (EN)
+        file: content/faq.en.json
         format: json
         fields:
           - label: Вопросы

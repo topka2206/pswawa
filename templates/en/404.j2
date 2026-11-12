@@ -1,0 +1,18 @@
+{% extends "base.j2" %}
+{% import "macros.j2" as m %}
+{% block main %}
+  <section class="subhero subhero-text notfound" aria-labelledby="h1">
+    <div class="wrap">
+      <p class="big404" aria-hidden="true">404</p>
+      <h1 class="h1" id="h1">Nothing here</h1>
+      <p class="lead">This page doesn't exist — but consoles and hookahs do.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="{{ url('home') }}">Go home</a>
+        {{ m.ig(settings, "Message us", "general", "404", cls="btn btn-outline", icon=false) }}
+      </div>
+      <nav class="foot-links" aria-label="Popular pages">
+        <a href="{{ url('consoles') }}">PS5 rental</a><a href="{{ url('hookah') }}">Hookah delivery</a><a href="{{ url('games') }}">Games</a>
+      </nav>
+    </div>
+  </section>
+{% endblock %}

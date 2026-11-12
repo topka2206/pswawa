@@ -1,0 +1,18 @@
+{% extends "base.j2" %}
+{% import "macros.j2" as m %}
+{% block main %}
+  <section class="subhero subhero-text notfound" aria-labelledby="h1">
+    <div class="wrap">
+      <p class="big404" aria-hidden="true">404</p>
+      <h1 class="h1" id="h1">Тут порожньо</h1>
+      <p class="lead">Такої сторінки немає — зате є приставки й кальяни.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="{{ url('home') }}">На головну</a>
+        {{ m.ig(settings, "Написати в Direct", "general", "404", cls="btn btn-outline", icon=false) }}
+      </div>
+      <nav class="foot-links" aria-label="Популярні сторінки">
+        <a href="{{ url('consoles') }}">Оренда PS5</a><a href="{{ url('hookah') }}">Кальян додому</a><a href="{{ url('games') }}">Ігри</a>
+      </nav>
+    </div>
+  </section>
+{% endblock %}

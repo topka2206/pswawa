@@ -1,0 +1,37 @@
+{% extends "base.j2" %}
+{% import "macros.j2" as m %}
+{% set P = prices %}
+{% block main %}
+  <section class="subhero subhero-text" aria-labelledby="h1">
+    <div class="wrap">
+      <h1 class="h1" id="h1">Умови оренди та часті запитання</h1>
+      <p class="lead">Коротко й без дрібного шрифту: як працює оренда PS5, VR і кальяну, яка застава і як ми привозимо й забираємо.</p>
+    </div>
+  </section>
+
+  <section class="section section-tight" aria-labelledby="h-rules">
+    <div class="wrap">
+      {{ m.head("Умови", "Як працює оренда", "h-rules") }}
+      <div class="terms-grid">
+        <article class="term reveal"><h3 class="h3">Бронювання</h3><p>Лише через Instagram Direct {{ settings.instagram_handle }}: що береш, на скільки, адреса й зручний час. Сайт замовлення не приймає.</p></article>
+        <article class="term reveal"><h3 class="h3">Доставка й повернення</h3><p>Возимо по всій Варшаві. Час доставки й забору узгодимо в Direct заздалегідь.</p></article>
+        <article class="term reveal"><h3 class="h3">Застава</h3><p>Зворотна: {{ P.console_deposit }} zł за приставку залежно від моделі та {{ P.hookah.deposit }} zł за кальян. Повертаємо, коли забираємо техніку.</p></article>
+        <article class="term reveal"><h3 class="h3">Ціни</h3><p>Ціна на сайті = ціна на порозі. Що довший термін, то дешевший день. <a href="{{ url('consoles') }}">Ціни на приставки</a>, <a href="{{ url('vr') }}">VR</a>, <a href="{{ url('hookah') }}">кальян</a>.</p></article>
+        <article class="term reveal"><h3 class="h3">Підключення</h3><p>Приставку підключимо до телевізора й Wi‑Fi самі. Кальян приїжджає з готовими чашами.</p></article>
+        <article class="term reveal"><h3 class="h3">Повернення</h3><p>Мити й пакувати нічого не треба. Напиши, коли зручно, — заберемо.</p></article>
+        <article class="term term-18 reveal"><h3 class="h3"><span class="badge-18">18+</span> Кальяни</h3><p>Лише для осіб, старших за 18 років. Кур'єр перевіряє документ під час доставки.</p></article>
+        <article class="term reveal"><h3 class="h3">Якщо щось не так</h3><p>Геймпад не працює, гра не запускається — одразу пиши в Direct, розберемося.</p></article>
+      </div>
+    </div>
+  </section>
+
+  {{ m.faq_section(faq, ui, title="Усі запитання й відповіді") }}
+
+  <section class="section">
+    <div class="wrap final reveal">
+      <h2 class="h2">Залишилися запитання?</h2>
+      <p>Напиши — відповімо українською чи російською.</p>
+      {{ m.ig(settings, "Написати в Direct", "general", "final") }}
+    </div>
+  </section>
+{% endblock %}

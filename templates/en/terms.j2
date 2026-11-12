@@ -1,0 +1,37 @@
+{% extends "base.j2" %}
+{% import "macros.j2" as m %}
+{% set P = prices %}
+{% block main %}
+  <section class="subhero subhero-text" aria-labelledby="h1">
+    <div class="wrap">
+      <h1 class="h1" id="h1">Rental terms and FAQ</h1>
+      <p class="lead">Short and with no fine print: how PS5, VR and hookah rental works, the deposit, delivery and pickup.</p>
+    </div>
+  </section>
+
+  <section class="section section-tight" aria-labelledby="h-rules">
+    <div class="wrap">
+      {{ m.head("Terms", "How renting works", "h-rules") }}
+      <div class="terms-grid">
+        <article class="term reveal"><h3 class="h3">Booking</h3><p>Only via Instagram DM {{ settings.instagram_handle }}: what you want, for how long, your address and a convenient time. The website doesn't take orders.</p></article>
+        <article class="term reveal"><h3 class="h3">Delivery & pickup</h3><p>Anywhere in Warsaw. We agree on delivery and pickup times in DM in advance.</p></article>
+        <article class="term reveal"><h3 class="h3">Deposit</h3><p>Refundable: {{ P.console_deposit }} zł for a console depending on the model and {{ P.hookah.deposit }} zł for a hookah. You get it back at pickup.</p></article>
+        <article class="term reveal"><h3 class="h3">Prices</h3><p>The price on the site is the price at your door. Longer rentals cost less per day. <a href="{{ url('consoles') }}">Console prices</a>, <a href="{{ url('vr') }}">VR</a>, <a href="{{ url('hookah') }}">hookah</a>.</p></article>
+        <article class="term reveal"><h3 class="h3">Setup</h3><p>We connect the console to your TV and Wi‑Fi. The hookah arrives with the bowls ready.</p></article>
+        <article class="term reveal"><h3 class="h3">Returns</h3><p>No cleaning or packing. Tell us when — we'll pick it up.</p></article>
+        <article class="term term-18 reveal"><h3 class="h3"><span class="badge-18">18+</span> Hookah</h3><p>Adults 18+ only. The courier checks ID on delivery.</p></article>
+        <article class="term reveal"><h3 class="h3">If something's wrong</h3><p>Controller not working, game won't start — DM us right away and we'll sort it out.</p></article>
+      </div>
+    </div>
+  </section>
+
+  {{ m.faq_section(faq, ui, title="All questions & answers") }}
+
+  <section class="section">
+    <div class="wrap final reveal">
+      <h2 class="h2">Still have questions?</h2>
+      <p>Send us a message on Instagram.</p>
+      {{ m.ig(settings, "Message us", "general", "final") }}
+    </div>
+  </section>
+{% endblock %}

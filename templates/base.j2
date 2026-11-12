@@ -66,9 +66,10 @@
       {% endfor %}
     </nav>
     {% if enabled_langs|length > 1 %}
-    <div class="lang" aria-label="{{ ui.lang_aria }}">
-      {% for l in enabled_langs %}{% if not loop.first %}<span>·</span>{% endif %}<a href="{{ url(key if key != '404' else 'home', l) }}" hreflang="{{ l }}" lang="{{ l }}"{% if l == lang %} aria-current="true"{% endif %}>{{ {'ru':'RU','uk':'UA','en':'EN'}[l] }}</a>{% endfor %}
-    </div>
+    <!-- Переключатель языка: ведёт на ту же страницу на другом языке; выбор запоминается (main.js) -->
+    <nav class="lang" aria-label="{{ ui.lang_aria }}">
+      {% for l in enabled_langs %}<a href="{{ url(key if key != '404' else 'home', l) }}" hreflang="{{ l }}" lang="{{ l }}" data-lang="{{ l }}"{% if l == lang %} aria-current="true"{% endif %}>{{ {'ru':'RU','uk':'UA','en':'EN'}[l] }}</a>{% endfor %}
+    </nav>
     {% endif %}
     <a class="btn btn-primary btn-sm header-cta" href="{{ settings.instagram_dm }}" target="_blank" rel="noopener" data-ig data-item="general" data-place="header">{{ ui.book_short }}</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="{{ ui.menu }}"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>

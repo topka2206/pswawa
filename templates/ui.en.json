@@ -1,0 +1,130 @@
+{
+ "lang_name": "EN",
+ "html_lang": "en",
+ "og_locale": "en_US",
+ "nav": {
+  "consoles": "Consoles",
+  "vr": "PS VR2",
+  "hookah": "Hookah",
+  "games": "Games",
+  "terms": "Terms"
+ },
+ "nav_mobile_terms": "Terms & FAQ",
+ "menu": "Menu",
+ "home_aria": "ps.wawa — home",
+ "main_menu": "Main menu",
+ "mobile_menu": "Mobile menu",
+ "lang_aria": "Language",
+ "book": "Book on Instagram",
+ "book_short": "Book now",
+ "breadcrumb_home": "Home",
+ "breadcrumb_aria": "Breadcrumbs",
+ "per_day": "per day",
+ "per_day_short": "/day",
+ "total": "total",
+ "day_price": "price per day",
+ "in_dm": "ask in DM",
+ "individual": "custom quote",
+ "col_model": "Model",
+ "col_term": "Period",
+ "col_price": "Price",
+ "terms": {
+  "d1": "1 day",
+  "d2": "2 days",
+  "d3": "3+ days",
+  "d3_long": "3+ days",
+  "d5": "5 days",
+  "d7": "7 days",
+  "d10": "10+ days"
+ },
+ "age18": "Adults 18+ only",
+ "faq_title": "FAQ",
+ "faq_eyebrow": "Questions",
+ "game_groups": {
+  "story": "Story hits",
+  "coop": "Co-op & party",
+  "fighting": "Fighting",
+  "sport": "Sports & racing",
+  "shooter": "Shooters",
+  "vr": "For PS VR2"
+ },
+ "footer": {
+  "nav_aria": "Site sections",
+  "links": {
+   "consoles": "PS5 rental",
+   "vr": "PS VR2 rental",
+   "hookah": "Hookah delivery",
+   "games": "Games",
+   "terms": "Terms & FAQ"
+  },
+  "age": "Hookahs for adults 18+ only. The courier checks ID.",
+  "tm": "PS5 and PlayStation are trademarks of Sony Interactive Entertainment; Xbox — Microsoft; GTA — Take-Two Interactive. ps.wawa is not affiliated with these companies.",
+  "copyright": "© 2026 ps.wawa · Warsaw"
+ },
+ "business_description": "PS5, PS5 Pro, PS4 Pro, Xbox, PS VR2 and hookah rental with home delivery in Warsaw. We deliver, set up and pick up. Booking via Instagram DM.",
+ "slogan": "We bring the night",
+ "offer_names": {
+  "ps4xbox": "PS4 Pro or Xbox rental with delivery in Warsaw",
+  "ps5": "PS5 rental with delivery in Warsaw",
+  "ps5pro": "PS5 Pro rental with delivery in Warsaw",
+  "vr2": "PS VR2 rental in Warsaw",
+  "hookah": "Hookah rental with home delivery in Warsaw"
+ },
+ "pages": {
+  "home": {
+   "title": "PS5 & Hookah Rental with Delivery in Warsaw — ps.wawa",
+   "description": "Rent a PS5, PS VR2 or hookah with delivery anywhere in Warsaw. We bring it, set it up and pick it up. Consoles from 80 zł/day, hookah 140 zł. Book on Instagram.",
+   "og_description": "We deliver a PS5, PS VR2 or hookah, set it up and pick it up. From 80 zł/day. Book on Instagram.",
+   "crumb": "Home",
+   "og_title": "PS5 & hookah rental in Warsaw",
+   "og_sub": "from 80 zł/day · Warsaw"
+  },
+  "consoles": {
+   "title": "PS5 Rental in Warsaw from 100 zł/day — ps.wawa",
+   "description": "Rent a PS5, PS5 Pro, PS4 Pro or Xbox with 2 controllers and games. Delivered and connected to your TV in Warsaw. From 80 zł/day. Book via Instagram DM.",
+   "og_description": "PS5, PS5 Pro, PS4 Pro or Xbox with games and 2 controllers, delivered to your door. From 80 zł/day.",
+   "crumb": "PS5 rental",
+   "og_title": "PS5 rental in Warsaw",
+   "og_sub": "from 80 zł/day · 2 controllers + games"
+  },
+  "vr": {
+   "title": "PS VR2 Rental in Warsaw — 90 zł/day | ps.wawa",
+   "description": "VR at home: we deliver PS VR2 in Warsaw, set it up and show you how to play. 90 zł/day, 20% off together with a PS5. Book via Instagram DM.",
+   "og_description": "PS VR2 delivered to your home and set up. 90 zł/day, 20% off with a PS5.",
+   "crumb": "PS VR2 rental",
+   "og_title": "PS VR2 rental in Warsaw",
+   "og_sub": "90 zł/day · 20% off with PS5"
+  },
+  "hookah": {
+   "title": "Hookah Delivery in Warsaw — 140 zł/day | ps.wawa",
+   "description": "Hookah rental with delivery in Warsaw: two ready bowls, coals and a heater included. 140 zł/day, no cleaning — we pick it up. 18+ only. Book on Instagram.",
+   "og_description": "A hookah with ready bowls delivered to your door. 140 zł/day, no cleaning. 18+ only.",
+   "crumb": "Hookah delivery",
+   "og_title": "Hookah delivery in Warsaw",
+   "og_sub": "140 zł/day · bowls ready"
+  },
+  "games": {
+   "title": "PS5 Games Included with Rental — ps.wawa Warsaw",
+   "description": "GTA VI, EA Sports FC, Mortal Kombat, It Takes Two and dozens more games already on the console. Need a specific game? DM us. PS5 rental from 100 zł/day.",
+   "og_description": "GTA VI, FC, Mortal Kombat, It Takes Two and more — already on the console.",
+   "crumb": "Games",
+   "og_title": "PS5 games included",
+   "og_sub": "GTA VI · FC · Mortal Kombat"
+  },
+  "terms": {
+   "title": "Rental Terms, Deposit & FAQ — ps.wawa Warsaw",
+   "description": "How renting works: a 300–400 zł refundable deposit, delivery across Warsaw, rental periods and returns. Answers to common questions about PS5, VR and hookah.",
+   "og_description": "Deposit, delivery, rental periods and answers to common questions.",
+   "crumb": "Terms & FAQ",
+   "og_title": "Rental terms & FAQ",
+   "og_sub": "deposit · delivery · FAQ"
+  },
+  "404": {
+   "title": "Page not found — ps.wawa",
+   "description": "This page doesn't exist. Go to the homepage or DM us on Instagram.",
+   "crumb": "404",
+   "og_title": "ps.wawa",
+   "og_sub": ""
+  }
+ }
+}

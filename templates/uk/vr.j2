@@ -1,0 +1,76 @@
+{% extends "base.j2" %}
+{% import "macros.j2" as m %}
+{% set V = prices.vr %}
+{% block sticky_item %}vr2{% endblock %}
+{% block main %}
+  {{ m.subhero(ui, settings,
+     "Оренда VR у Варшаві: PS VR2 до тебе додому",
+     "Шолом віртуальної реальності для PS5 з доставкою по Варшаві. Привеземо, підключимо, налаштуємо й покажемо, як грати.",
+     "i-vr", "is-game", "vr2", "Забронювати PS VR2",
+     extra="Разом із PS5 — мінус " ~ V.bundle_discount ~ "%") }}
+
+  <section class="section section-tight" id="ceny" aria-labelledby="h-prices">
+    <div class="wrap">
+      {{ m.head("Ціни", "Скільки коштує оренда PS VR2", "h-prices", cls="is-game") }}
+      <div class="panel is-game reveal">{{ m.simple_prices(V, ui, show_d2=True) }}</div>
+      <div class="deal reveal is-game">
+        <b>PS5 + PS VR2 = −{{ V.bundle_discount }}%</b>
+        <span>Шолому потрібна PS5. Немає своєї — бери нашу в комплекті, так дешевше.</span>
+      </div>
+      <div class="btn-row reveal">
+        {{ m.ig(settings, "Хочу PS5 + VR2", "vr2", "price", cls="btn btn-outline", icon=false) }}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="h-kit">
+    <div class="wrap">
+      {{ m.head("У комплекті", "Що привеземо", "h-kit", cls="is-game") }}
+      <ul class="kit reveal is-game">
+        <li><b>Шолом PS VR2</b><span>чистий, з протертими накладками</span></li>
+        <li><b>2 контролери</b><span>для обох рук</span></li>
+        <li><b>Налаштування</b><span>підключимо до PS5 і налаштуємо ігрову зону</span></li>
+        <li><b>Ігри для VR</b><span>уже на акаунті — дивись список нижче</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="h-room">
+    <div class="wrap">
+      {{ m.head("Перед бронюванням", "Віртуальна реальність удома: що треба знати", "h-room") }}
+      <ul class="why why-3 reveal">
+        <li><b>Місце</b><span>Для більшості ігор вистачить вільного простору приблизно 2×2 метри. Є ігри, у які грають сидячи.</span></li>
+        <li><b>Вік</b><span>Виробник рекомендує VR з 12 років.</span></li>
+        <li><b>Компанія</b><span>Грає один, решта дивляться на телевізорі й коментують. Це половина задоволення.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  {% set vr_games = games|selectattr("group", "equalto", "vr")|list %}
+  {% if vr_games %}
+  <section class="section" aria-labelledby="h-games">
+    <div class="wrap">
+      {{ m.head("Ігри", "У що грати в PS VR2", "h-games", cls="is-game") }}
+      {{ m.game_chips(vr_games, settings.gta_release) }}
+      <p class="games-note reveal">Шукаєш щось конкретне — напиши в Direct. <a href="{{ url('games') }}">Усі ігри</a></p>
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="section section-flush" aria-label="Що ще можна взяти">
+    <div class="wrap cross">
+      <a class="cross-card is-game reveal" href="{{ url('consoles') }}"><span class="eyebrow is-game">Приставки</span><b>Оренда PS5, PS5 Pro та Xbox</b><span class="link-arrow">Ціни на приставки</span></a>
+      <a class="cross-card is-hookah reveal" href="{{ url('hookah') }}"><span class="eyebrow is-hookah">18+</span><b>Кальян додому — до VR-вечора</b><span class="link-arrow">Кальян додому</span></a>
+    </div>
+  </section>
+
+  {{ m.faq_section(faq, ui, title="Запитання про оренду VR") }}
+
+  <section class="section">
+    <div class="wrap final reveal">
+      <h2 class="h2">Спробуй VR удома</h2>
+      <p>Напиши, на який день, — привеземо й усе налаштуємо.</p>
+      {{ m.ig(settings, ui.book, "vr2", "final") }}
+    </div>
+  </section>
+{% endblock %}

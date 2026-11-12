@@ -1,0 +1,62 @@
+{% extends "base.j2" %}
+{% import "macros.j2" as m %}
+{% set ps5 = prices.consoles|selectattr("id", "equalto", "ps5")|first %}
+{% block sticky_item %}ps5{% endblock %}
+{% block main %}
+  {{ m.subhero(ui, settings,
+     "Ігри для PS5 в оренду",
+     "Усі ігри вже на акаунті приставки — нічого не треба купувати й годинами завантажувати. Нижче те, у що грають найчастіше.",
+     "i-gamepad", "is-game", "ps5", "Забронювати PS5",
+     extra="PS5 — від " ~ (ps5.d1|zl) ~ " zł/добу") }}
+
+  {% if settings.blocks.gta %}
+  <section class="section section-tight" id="gta-6" aria-labelledby="h-gta">
+    <div class="wrap">
+      <div class="gta reveal">
+        <div class="p-scan" aria-hidden="true"></div>
+        <div class="gta-top"><span class="eyebrow is-game">Новинка</span><span class="gta-date">Реліз {{ settings.gta_release }}</span></div>
+        <h2 class="h2" id="h-gta">GTA VI в оренду з PS5</h2>
+        <div class="gta-body">
+          <p>Не треба купувати ні приставку, ні гру: GTA VI буде на наших PS5 з першого дня. Бронюй заздалегідь.</p>
+          {{ m.ig(settings, "Хочу PS5 з GTA VI", "ps5", "gta", cls="btn btn-lime", icon=false) }}
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {% for group, label in ui.game_groups.items() %}
+  {% set list = games|selectattr("group", "equalto", group)|list %}
+  {% if list %}
+  <section class="section section-compact" aria-labelledby="h-g-{{ group }}">
+    <div class="wrap">
+      <h2 class="h2 h2-sm reveal" id="h-g-{{ group }}">{{ label }}</h2>
+      {{ m.game_chips(list, settings.gta_release) }}
+      {% if group == "vr" %}<p class="games-note reveal">Для цих ігор потрібен шолом — <a href="{{ url('vr') }}">оренда PS VR2</a>.</p>{% endif %}
+    </div>
+  </section>
+  {% endif %}
+  {% endfor %}
+
+  <section class="section section-flush" aria-label="Потрібна конкретна гра">
+    <div class="wrap">
+      <div class="combo reveal">
+        <div class="combo-text">
+          <h2 class="h3">Потрібна конкретна гра?</h2>
+          <p>Напиши назву в Direct — перевіримо й одразу скажемо.</p>
+        </div>
+        {{ m.ig(settings, "Запитати про гру", "ps5", "games", icon=false) }}
+      </div>
+    </div>
+  </section>
+
+  {{ m.faq_section(faq, ui) }}
+
+  <section class="section">
+    <div class="wrap final reveal">
+      <h2 class="h2">Обрав гру?</h2>
+      <p>Привеземо PS5, на якій вона вже стоїть. <a href="{{ url('consoles') }}">Ціни на оренду PS5</a></p>
+      {{ m.ig(settings, ui.book, "ps5", "final") }}
+    </div>
+  </section>
+{% endblock %}

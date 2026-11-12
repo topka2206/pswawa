@@ -1,0 +1,76 @@
+{% extends "base.j2" %}
+{% import "macros.j2" as m %}
+{% set V = prices.vr %}
+{% block sticky_item %}vr2{% endblock %}
+{% block main %}
+  {{ m.subhero(ui, settings,
+     "PS VR2 rental in Warsaw, delivered to you",
+     "A PS5 virtual reality headset delivered anywhere in Warsaw. We bring it, connect it, set it up and show you how to play.",
+     "i-vr", "is-game", "vr2", "Book PS VR2",
+     extra=V.bundle_discount ~ "% off with a PS5") }}
+
+  <section class="section section-tight" id="ceny" aria-labelledby="h-prices">
+    <div class="wrap">
+      {{ m.head("Prices", "How much is a PS VR2 rental", "h-prices", cls="is-game") }}
+      <div class="panel is-game reveal">{{ m.simple_prices(V, ui, show_d2=True) }}</div>
+      <div class="deal reveal is-game">
+        <b>PS5 + PS VR2 = −{{ V.bundle_discount }}%</b>
+        <span>The headset needs a PS5. Don't have one? Take ours in a bundle — it's cheaper.</span>
+      </div>
+      <div class="btn-row reveal">
+        {{ m.ig(settings, "PS5 + VR2, please", "vr2", "price", cls="btn btn-outline", icon=false) }}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="h-kit">
+    <div class="wrap">
+      {{ m.head("Included", "What we bring", "h-kit", cls="is-game") }}
+      <ul class="kit reveal is-game">
+        <li><b>PS VR2 headset</b><span>clean, with wiped face pads</span></li>
+        <li><b>2 controllers</b><span>one for each hand</span></li>
+        <li><b>Setup</b><span>connected to the PS5, play area set up</span></li>
+        <li><b>VR games</b><span>already on the account — see below</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="h-room">
+    <div class="wrap">
+      {{ m.head("Before you book", "VR at home: good to know", "h-room") }}
+      <ul class="why why-3 reveal">
+        <li><b>Space</b><span>About 2×2 metres of free space is enough for most games. Some are played seated.</span></li>
+        <li><b>Age</b><span>The manufacturer recommends VR for ages 12+.</span></li>
+        <li><b>Friends</b><span>One plays, the rest watch on the TV and comment. That's half the fun.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  {% set vr_games = games|selectattr("group", "equalto", "vr")|list %}
+  {% if vr_games %}
+  <section class="section" aria-labelledby="h-games">
+    <div class="wrap">
+      {{ m.head("Games", "What to play on PS VR2", "h-games", cls="is-game") }}
+      {{ m.game_chips(vr_games, settings.gta_release) }}
+      <p class="games-note reveal">Looking for something specific? DM us. <a href="{{ url('games') }}">All games</a></p>
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="section section-flush" aria-label="Add-ons">
+    <div class="wrap cross">
+      <a class="cross-card is-game reveal" href="{{ url('consoles') }}"><span class="eyebrow is-game">Consoles</span><b>PS5, PS5 Pro and Xbox rental</b><span class="link-arrow">Console prices</span></a>
+      <a class="cross-card is-hookah reveal" href="{{ url('hookah') }}"><span class="eyebrow is-hookah">18+</span><b>Hookah delivery for your VR night</b><span class="link-arrow">Hookah delivery</span></a>
+    </div>
+  </section>
+
+  {{ m.faq_section(faq, ui, title="VR rental FAQ") }}
+
+  <section class="section">
+    <div class="wrap final reveal">
+      <h2 class="h2">Try VR at home</h2>
+      <p>Tell us the day — we'll bring it and set everything up.</p>
+      {{ m.ig(settings, ui.book, "vr2", "final") }}
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "base.j2" %}
+{% import "macros.j2" as m %}
+{% set H = prices.hookah %}
+{% block sticky_item %}hookah{% endblock %}
+{# Tobacco wording stays neutral: no brands, no calls to smoke. Have a lawyer review before launch. #}
+{% block main %}
+  {{ m.subhero(ui, settings,
+     "Hookah delivery in Warsaw",
+     "Hookah rental delivered to your door with two ready bowls, coals and a coal heater. No cleaning afterwards — we pick it up.",
+     "i-hookah", "is-hookah", "hookah", "Book a hookah",
+     extra="18+ only. The courier checks ID.") }}
+
+  <section class="section section-tight" id="ceny" aria-labelledby="h-prices">
+    <div class="wrap">
+      {{ m.head("Prices", "How much is a hookah rental", "h-prices", cls="is-hookah") }}
+      <div class="panel is-hookah reveal">{{ m.simple_prices(H, ui, show_d2=True) }}</div>
+      <div class="deal reveal is-hookah">
+        <b>Extra pack — {{ H.addon_price|zl }} zł</b>
+        <span>One more bowl and 3 coals, in case the night runs long.</span>
+      </div>
+      <div class="btn-row reveal">
+        {{ m.ig(settings, "Hookah for tonight", "hookah", "price", cls="btn btn-outline", icon=false) }}
+      </div>
+      <p class="prices-more reveal">Refundable deposit — {{ H.deposit }} zł. <a href="{{ url('terms') }}">Rental terms</a></p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="h-kit">
+    <div class="wrap">
+      {{ m.head("Included", "What arrives at your door", "h-kit", "The bowls come ready — all that's left is to light the coals.", cls="is-hookah") }}
+      <ul class="kit reveal is-hookah">
+        <li><b>Hookah ×1</b><span>clean and assembled</span></li>
+        <li><b>2 bowls</b><span>already packed — ask about flavours in DM</span></li>
+        <li><b>Coals ×6</b><span>plus a coal heater</span></li>
+        <li><b>Mouthpieces ×6</b><span>disposable, one each</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="h-party">
+    <div class="wrap">
+      {{ m.head("Occasions", "Hookah delivery for parties and nights in", "h-party") }}
+      <ul class="why why-3 reveal">
+        <li><b>Night in with friends</b><span>No lounge, no hourly bill. Stay as long as you like.</span></li>
+        <li><b>Birthday</b><span>Need several hookahs? DM us and we'll check availability for your date.</span></li>
+        <li><b>24-hour rental</b><span>1 day — {{ H.d1|zl }} zł, 3+ days — {{ H.d3|zl }} zł per day.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-flush" aria-label="Cleanliness and rules">
+    <div class="wrap">
+      <div class="rules reveal">
+        <div><b>Clean</b><span>Disposable mouthpieces. We wash the base and stem after every order.</span></div>
+        <div><b>No cleaning</b><span>Tell us when — we pick it up as is.</span></div>
+        <div><b class="t-ember">18+</b><span>Adults only. The courier checks ID.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-flush" aria-label="Add-ons">
+    <div class="wrap cross">
+      <a class="cross-card is-game reveal" href="{{ url('consoles') }}"><span class="eyebrow is-game">Combo</span><b>Console + hookah = your night, sorted</b><span class="link-arrow">PS5 rental</span></a>
+    </div>
+  </section>
+
+  {{ m.faq_section(faq, ui, title="Hookah FAQ") }}
+
+  <section class="section">
+    <div class="wrap final reveal">
+      <h2 class="h2">Your hookah is on its way</h2>
+      <p>Send us the address and time — we'll bring it with the bowls ready.</p>
+      {{ m.ig(settings, ui.book, "hookah", "final") }}
+    </div>
+  </section>
+{% endblock %}

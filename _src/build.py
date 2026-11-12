@@ -229,17 +229,27 @@ def write_meta_files():
             lines.append(f"- [{l.upper()}]({url('home', l, True)})")
     (DIST / "llms.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-    # Корень: редирект на x-default
+    # Корень «/»: открываем язык пользователя.
+    # 1) ручной выбор (localStorage) → 2) языки браузера по порядку (uk / ru / be→ru / en) → 3) русский (x-default).
+    # Пример: телефон на польском + украинском → /uk/; только польский → /ru/; английский → /en/.
     alts = "\n".join(f'<link rel="alternate" hreflang="{l}" href="{url("home", l, True)}">' for l in ENABLED)
-    links = " · ".join(f'<a href="/{l}/">{load(f"templates/ui.{l}.json")["lang_name"]}</a>' for l in ENABLED)
+    links = " · ".join(f'<a href="/{l}/" hreflang="{l}">{load(f"templates/ui.{l}.json")["lang_name"]}</a>' for l in ENABLED)
     (DIST / "index.html").write_text(f"""<!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ps.wawa — аренда PS5 и кальянов в Варшаве</title>
+<html lang="{DEFAULT_LANG}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ps.wawa — аренда PS5 и кальянов в Варшаве · оренда PS5 · PS5 rental Warsaw</title>
+<meta name="description" content="ps.wawa — аренда PS5, PS VR2 и кальянов с доставкой по Варшаве. Українською · English.">
 <link rel="canonical" href="{url('home', DEFAULT_LANG, True)}">
 {alts}
 <link rel="alternate" hreflang="x-default" href="{url('home', DEFAULT_LANG, True)}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<meta http-equiv="refresh" content="0; url=/{DEFAULT_LANG}/">
+<script>
+(function(){{var S={json.dumps(ENABLED)},c=null;
+try{{c=localStorage.getItem('pswawa_lang')}}catch(e){{}}
+if(S.indexOf(c)<0){{c=null;var L=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||''];
+for(var i=0;i<L.length&&!c;i++){{var l=String(L[i]).toLowerCase().slice(0,2);if(l==='be')l='ru';if(S.indexOf(l)>-1)c=l}}}}
+location.replace('/'+(c||'{DEFAULT_LANG}')+'/'+location.search+location.hash)}})();
+</script>
+<noscript><meta http-equiv="refresh" content="0; url=/{DEFAULT_LANG}/"></noscript>
 <style>body{{margin:0;background:#0A0A0B;color:#F2EFE9;font:16px system-ui;display:grid;place-items:center;min-height:100vh}}a{{color:#E03CFF;padding:12px}}</style>
 </head><body><p>{links}</p></body></html>
 """, encoding="utf-8")
@@ -247,7 +257,7 @@ def write_meta_files():
     # 404 по языкам (Netlify / Cloudflare Pages читают _redirects; корневой 404.html — русский)
     shutil.copy(DIST / DEFAULT_LANG / "404.html", DIST / "404.html")
     (DIST / "_redirects").write_text(
-        "/ /ru/ 302\n" + "".join(f"/{l}/* /{l}/404.html 404\n" for l in ENABLED), encoding="utf-8")
+        "".join(f"/{l}/* /{l}/404.html 404\n" for l in ENABLED), encoding="utf-8")
 
 
 def main():

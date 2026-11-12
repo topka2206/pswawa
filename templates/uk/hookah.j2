@@ -1,0 +1,76 @@
+{% extends "base.j2" %}
+{% import "macros.j2" as m %}
+{% set H = prices.hookah %}
+{% block sticky_item %}hookah{% endblock %}
+{# Формулювання про тютюн — нейтральні, без марок і закликів. Перед запуском погодити з юристом. #}
+{% block main %}
+  {{ m.subhero(ui, settings,
+     "Кальян додому у Варшаві",
+     "Оренда кальяну з доставкою: привеземо з двома готовими чашами, вугіллям і плиткою для розпалу. Мити потім не треба — заберемо самі.",
+     "i-hookah", "is-hookah", "hookah", "Забронювати кальян",
+     extra="Лише 18+. Кур'єр перевіряє документ.") }}
+
+  <section class="section section-tight" id="ceny" aria-labelledby="h-prices">
+    <div class="wrap">
+      {{ m.head("Ціни", "Скільки коштує оренда кальяну", "h-prices", cls="is-hookah") }}
+      <div class="panel is-hookah reveal">{{ m.simple_prices(H, ui, show_d2=True) }}</div>
+      <div class="deal reveal is-hookah">
+        <b>Дод. пакет — {{ H.addon_price|zl }} zł</b>
+        <span>Ще одна забивка тютюну й 3 вуглинки, якщо вечір затягнеться.</span>
+      </div>
+      <div class="btn-row reveal">
+        {{ m.ig(settings, "Хочу кальян на вечір", "hookah", "price", cls="btn btn-outline", icon=false) }}
+      </div>
+      <p class="prices-more reveal">Зворотна застава — {{ H.deposit }} zł. <a href="{{ url('terms') }}">Умови оренди</a></p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="h-kit">
+    <div class="wrap">
+      {{ m.head("У комплекті", "Що приїде до тебе", "h-kit", "Кальян приїжджає з готовими чашами — залишається лише розпалити вугілля.", cls="is-hookah") }}
+      <ul class="kit reveal is-hookah">
+        <li><b>Кальян ×1</b><span>чистий, зібраний</span></li>
+        <li><b>2 чаші</b><span>уже забиті, тютюн на вибір — уточни в Direct</span></li>
+        <li><b>Вугілля ×6</b><span>і плитка для розпалу</span></li>
+        <li><b>Мундштуки ×6</b><span>одноразові, у кожного свій</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="h-party">
+    <div class="wrap">
+      {{ m.head("Приводи", "Кальян з доставкою на вечірку й додому", "h-party") }}
+      <ul class="why why-3 reveal">
+        <li><b>Вечір із друзями</b><span>Без походу в кальянну й без рахунку за кожну годину. Сидьте скільки хочете.</span></li>
+        <li><b>День народження</b><span>Потрібно кілька кальянів — напиши, перевіримо наявність на твою дату.</span></li>
+        <li><b>Оренда кальяну на добу</b><span>Доба — {{ H.d1|zl }} zł, від 3 днів — {{ H.d3|zl }} zł на день.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-flush" aria-label="Чистота й правила">
+    <div class="wrap">
+      <div class="rules reveal">
+        <div><b>Чисто</b><span>Мундштуки одноразові. Колбу й шахту миємо після кожного замовлення.</span></div>
+        <div><b>Мити не треба</b><span>Напиши, коли зручно, — заберемо як є.</span></div>
+        <div><b class="t-ember">18+</b><span>Кальяни видаємо лише повнолітнім. Кур'єр перевіряє документ.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-flush" aria-label="Що ще можна взяти">
+    <div class="wrap cross">
+      <a class="cross-card is-game reveal" href="{{ url('consoles') }}"><span class="eyebrow is-game">Combo</span><b>Приставка + кальян = готовий вечір</b><span class="link-arrow">Оренда PS5</span></a>
+    </div>
+  </section>
+
+  {{ m.faq_section(faq, ui, title="Запитання про кальян") }}
+
+  <section class="section">
+    <div class="wrap final reveal">
+      <h2 class="h2">Кальян їде до тебе</h2>
+      <p>Напиши адресу й час — привеземо з готовими чашами.</p>
+      {{ m.ig(settings, ui.book, "hookah", "final") }}
+    </div>
+  </section>
+{% endblock %}

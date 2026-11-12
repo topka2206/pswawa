@@ -1,0 +1,84 @@
+{% extends "base.j2" %}
+{% import "macros.j2" as m %}
+{% set P = prices %}
+{% set ps5 = P.consoles|selectattr("id", "equalto", "ps5")|first %}
+{% block sticky_item %}ps5{% endblock %}
+{% block main %}
+  {{ m.subhero(ui, settings,
+     "Оренда PS5 у Варшаві з доставкою",
+     "PS5, PS5 Pro, PS4 Pro або Xbox — привеземо додому, підключимо до телевізора й заберемо, коли награєшся. Два геймпади та ігри вже в комплекті.",
+     "i-gamepad", "is-game", "ps5", "Забронювати PS5",
+     extra="Від " ~ (P.consoles|map(attribute='d3')|min) ~ " zł на день при оренді від 3 днів") }}
+
+  <section class="section section-tight" id="ceny" aria-labelledby="h-prices">
+    <div class="wrap">
+      {{ m.head("Ціни, zł", "Скільки коштує оренда приставки", "h-prices", "Що довше береш — то дешевший день. Доставка, підключення, 2 геймпади та ігри — уже в ціні.", cls="is-game") }}
+      <div class="panel is-game reveal">{{ m.consoles_full(P, ui) }}</div>
+      <div class="btn-row reveal">
+        {{ m.ig(settings, "Хочу PS5 на 2 дні", "ps5", "price", cls="btn btn-outline", icon=false) }}
+        {{ m.ig(settings, "Хочу PS5 Pro", "ps5pro", "price", cls="btn btn-outline", icon=false) }}
+        {{ m.ig(settings, "Хочу PS4 Pro / Xbox", "ps4xbox", "price", cls="btn btn-outline", icon=false) }}
+      </div>
+      <p class="prices-more reveal">Зворотна застава — {{ P.console_deposit }} zł залежно від моделі. <a href="{{ url('terms') }}">Умови оренди</a></p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="h-kit">
+    <div class="wrap">
+      {{ m.head("У комплекті", "Що привеземо", "h-kit", cls="is-game") }}
+      <ul class="kit reveal is-game">
+        <li><b>Приставка</b><span>PS5, PS5 Pro, PS4 Pro або Xbox — на вибір</span></li>
+        <li><b>2 геймпади</b><span>протираємо після кожного замовлення</span></li>
+        <li><b>Ігри</b><span>акаунт із великим вибором ігор + диски</span></li>
+        <li><b>Доставка й підключення</b><span>підключимо до телевізора та Wi‑Fi</span></li>
+      </ul>
+      <p class="kit-note reveal">Від тебе потрібні лише Wi‑Fi і телевізор з HDMI.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="h-models">
+    <div class="wrap">
+      {{ m.head("Моделі", "PS5, PS5 Pro, PS4 Pro чи Xbox — що взяти", "h-models", cls="is-game") }}
+      <div class="models">
+        <article class="model reveal is-game"><h3 class="h3">PS5</h3><p>Золота середина: усі новинки, зокрема GTA VI. Беруть найчастіше.</p><span class="num">{{ ps5.d1|zl }} zł / доба</span></article>
+        {% for c in P.consoles if c.id == "ps5pro" %}
+        <article class="model reveal is-game"><h3 class="h3">PS5 Pro</h3><p>Для великого телевізора: чіткіша картинка, стабільніший FPS. Оренда PS5 Pro — якщо важлива графіка.</p><span class="num">{{ c.d1|zl }} zł / доба</span></article>
+        {% endfor %}
+        {% for c in P.consoles if c.id == "ps4xbox" %}
+        <article class="model reveal is-game"><h3 class="h3">PS4 Pro або Xbox</h3><p>Найбюджетніший варіант. Для FC, GTA V і файтингів з друзями — більш ніж достатньо.</p><span class="num">{{ c.d1|zl }} zł / доба</span></article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="h-cases">
+    <div class="wrap">
+      {{ m.head("Коли беруть", "PS5 на добу, на вихідні чи на тиждень", "h-cases") }}
+      <ul class="why why-3 reveal">
+        <li><b>PS5 на вихідні</b><span>2 дні — {{ (ps5.d2 * 2)|zl }} zł. П'ятниця, друзі, FC до ранку.</span></li>
+        <li><b>На день народження</b><span>Привеземо до початку свята, заберемо наступного дня. Додай кальян — і вечірка готова.</span></li>
+        <li><b>На тиждень і довше</b><span>Від {{ ps5.d3|zl }} zł на день. На 10+ днів порахуємо індивідуально.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-flush" aria-label="Що ще можна взяти">
+    <div class="wrap cross">
+      {% if settings.blocks.gta %}
+      <a class="cross-card is-game reveal" href="{{ url('games') }}"><span class="eyebrow is-game">Новинка · {{ settings.gta_release }}</span><b>GTA VI на наших PS5 з першого дня</b><span class="link-arrow">Усі ігри</span></a>
+      {% endif %}
+      <a class="cross-card is-game reveal" href="{{ url('vr') }}"><span class="eyebrow is-game">PS5 + VR2</span><b>Віртуальна реальність зі знижкою {{ P.vr.bundle_discount }}%</b><span class="link-arrow">Оренда PS VR2</span></a>
+      <a class="cross-card is-hookah reveal" href="{{ url('hookah') }}"><span class="eyebrow is-hookah">18+</span><b>Додай кальян — вийде готовий вечір</b><span class="link-arrow">Кальян додому</span></a>
+    </div>
+  </section>
+
+  {{ m.faq_section(faq, ui, title="Запитання про оренду PS5") }}
+
+  <section class="section">
+    <div class="wrap final reveal">
+      <h2 class="h2">PS5 уже чекає</h2>
+      <p>Напиши, яку приставку й на скільки, — привеземо.</p>
+      {{ m.ig(settings, ui.book, "ps5", "final") }}
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,120 @@
+{
+  "items": [
+    {
+      "q": "How much does it cost to rent a PS5 in Warsaw?",
+      "a": "A PS5 is 100 zł per day, a PS5 Pro is 110 zł, a PS4 Pro or Xbox is 80 zł. Longer is cheaper: from 3 days a PS5 costs 60 zł per day.",
+      "pages": [
+        "home",
+        "consoles"
+      ]
+    },
+    {
+      "q": "What's included with a console?",
+      "a": "The console, 2 controllers, an account with games, plus discs. We deliver and connect it to your TV — all you need is Wi‑Fi.",
+      "pages": [
+        "home",
+        "consoles"
+      ]
+    },
+    {
+      "q": "Can I rent a PS5 with GTA VI?",
+      "a": "Yes. GTA VI launches on 19 November 2026 and will be on our PS5s from day one. No need to buy the console or the game — book on Instagram in advance.",
+      "pages": [
+        "home",
+        "consoles",
+        "games"
+      ]
+    },
+    {
+      "q": "Is there a deposit?",
+      "a": "Yes, refundable: 300–400 zł for a console depending on the model and 300 zł for a hookah. You get it back when we pick up.",
+      "pages": [
+        "home",
+        "consoles",
+        "hookah"
+      ]
+    },
+    {
+      "q": "Can I rent a PS5 for a weekend or a week?",
+      "a": "Yes. 2 days with a PS5 is 160 zł, from 3 days it's 60 zł per day. For 10+ days we'll give you a custom quote.",
+      "pages": [
+        "home",
+        "consoles"
+      ]
+    },
+    {
+      "q": "Where do you deliver and how fast?",
+      "a": "Anywhere in Warsaw. We'll agree on the delivery time for your area in DM.",
+      "pages": [
+        "home",
+        "consoles",
+        "vr",
+        "hookah"
+      ]
+    },
+    {
+      "q": "What comes with the hookah?",
+      "a": "The hookah, 2 bowls already packed, 6 coals, a coal heater and 6 disposable mouthpieces. Ask about flavours in DM. Extra pack (one more bowl + 3 coals) — 30 zł.",
+      "pages": [
+        "hookah"
+      ]
+    },
+    {
+      "q": "Do I need to clean the hookah?",
+      "a": "No. Just tell us when to pick it up. Mouthpieces are disposable and we wash the base after every order.",
+      "pages": [
+        "home",
+        "hookah"
+      ]
+    },
+    {
+      "q": "Can I order a hookah if I'm under 18?",
+      "a": "No. Hookahs are for adults 18+ only. The courier checks ID on delivery.",
+      "pages": [
+        "hookah"
+      ]
+    },
+    {
+      "q": "Does PS VR2 work without a PS5?",
+      "a": "No, the headset needs a PS5. Don't have one? Take ours — PS5 and PS VR2 together are 20% cheaper.",
+      "pages": [
+        "vr"
+      ]
+    },
+    {
+      "q": "How much space do I need for VR?",
+      "a": "About 2×2 metres of free space is enough for most games. Some games are played seated on the sofa.",
+      "pages": [
+        "vr"
+      ]
+    },
+    {
+      "q": "Can I order a console and a hookah together?",
+      "a": "Yes, we bring everything in one trip. And a PS5 with PS VR2 comes with 20% off.",
+      "pages": [
+        "home",
+        "consoles",
+        "hookah"
+      ]
+    },
+    {
+      "q": "The game I want isn't listed — what now?",
+      "a": "Send us the title in DM. We'll check if it's on the account or on disc and let you know right away.",
+      "pages": [
+        "games",
+        "consoles"
+      ]
+    },
+    {
+      "q": "How do I book?",
+      "a": "DM us on Instagram @ps.wawa: what you want, for how long and where to bring it. The website doesn't take orders — only Instagram DM.",
+      "pages": [
+        "home",
+        "consoles",
+        "vr",
+        "hookah",
+        "games"
+      ]
+    }
+  ]
+}

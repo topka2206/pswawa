@@ -43,6 +43,13 @@
     reveals.forEach(function (el) { el.classList.add('is-in'); });
   }
 
+  /* --- Язык: запоминаем ручной выбор, чтобы главная (/) больше не перекидывала на язык браузера --- */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('.lang a[data-lang]');
+    if (!a) return;
+    try { localStorage.setItem('pswawa_lang', a.getAttribute('data-lang')); } catch (err) {}
+  });
+
   /* --- GA4: событие click_instagram для каждой ссылки в Instagram ---
      item: ps5 / ps5pro / ps4xbox / vr2 / hookah / general (из data-item), lang — из <html lang> */
   document.addEventListener('click', function (e) {
