@@ -19,3 +19,10 @@
   for = "/admin/*"
   [headers.values]
     X-Robots-Tag = "noindex"
+
+# IndexNow: после деплоя сообщаем Bing (и Copilot / ChatGPT-поиску) об изменённых страницах
+[[plugins]]
+  package = "./netlify/plugins/indexnow"
+  [plugins.inputs]
+    key = "d036b764c46054b6578cfd1f8c9e4e32"
+    host = "pswawa.pl"

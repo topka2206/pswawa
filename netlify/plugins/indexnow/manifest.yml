@@ -1,0 +1,6 @@
+name: indexnow
+inputs:
+  - name: key
+    description: IndexNow-ключ (тот же, что в файле /<key>.txt в корне сайта)
+  - name: host
+    description: Домен сайта без https://
