@@ -61,5 +61,4 @@ module.exports = {
       console.log('IndexNow: не удалось отправить —', e.message);
     }
   },
-  _run: run, // для локальной проверки
 };
