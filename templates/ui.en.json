@@ -52,6 +52,7 @@
   "nav_aria": "Site sections",
   "links": {
    "consoles": "PS5 rental",
+   "gta": "PS5 with GTA VI",
    "vr": "PS VR2 rental",
    "hookah": "Hookah delivery",
    "games": "Games",
@@ -68,7 +69,9 @@
   "ps5": "PS5 rental with delivery in Warsaw",
   "ps5pro": "PS5 Pro rental with delivery in Warsaw",
   "vr2": "PS VR2 rental in Warsaw",
-  "hookah": "Hookah rental with home delivery in Warsaw"
+  "hookah": "Hookah rental with home delivery in Warsaw",
+  "gta_ps5": "PS5 with GTA VI rental in Warsaw",
+  "gta_ps5pro": "PS5 Pro with GTA VI rental in Warsaw"
  },
  "pages": {
   "home": {
@@ -86,6 +89,14 @@
    "crumb": "PS5 rental",
    "og_title": "PS5 rental in Warsaw",
    "og_sub": "from 80 zł/day · 2 controllers + games"
+  },
+  "gta": {
+   "title": "Rent a PS5 with GTA VI in Warsaw — from November 19 · ps.wawa",
+   "description": "Play GTA VI without buying a console: we deliver a PS5 or PS5 Pro with the game, connect it to your TV and pick it up later. Weekend from 160 zł. Book now via Instagram.",
+   "og_description": "A PS5 with GTA VI at your door from day one. Weekend from 160 zł, no console to buy.",
+   "crumb": "PS5 with GTA VI",
+   "og_title": "PS5 with GTA VI",
+   "og_sub": "from 19.11 · weekend from 160 zł"
   },
   "vr": {
    "title": "PS VR2 Rental in Warsaw — 90 zł/day | ps.wawa",

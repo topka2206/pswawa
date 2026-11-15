@@ -75,6 +75,7 @@ collections:
                 options:
                   - { label: Главная, value: home }
                   - { label: Приставки, value: consoles }
+                  - { label: PS5 с GTA VI, value: gta }
                   - { label: PS VR2, value: vr }
                   - { label: Кальян, value: hookah }
                   - { label: Игры, value: games }
@@ -99,6 +100,7 @@ collections:
                 options:
                   - { label: Главная, value: home }
                   - { label: Приставки, value: consoles }
+                  - { label: PS5 с GTA VI, value: gta }
                   - { label: PS VR2, value: vr }
                   - { label: Кальян, value: hookah }
                   - { label: Игры, value: games }
@@ -123,6 +125,7 @@ collections:
                 options:
                   - { label: Главная, value: home }
                   - { label: Приставки, value: consoles }
+                  - { label: PS5 с GTA VI, value: gta }
                   - { label: PS VR2, value: vr }
                   - { label: Кальян, value: hookah }
                   - { label: Игры, value: games }

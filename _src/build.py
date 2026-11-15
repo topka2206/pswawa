@@ -23,6 +23,7 @@ DEFAULT_LANG = "ru"
 SLUGS = {
     "home":     {"ru": "",                        "uk": "",                        "en": ""},
     "consoles": {"ru": "arenda-ps5-varshava/",    "uk": "orenda-ps5-varshava/",    "en": "ps5-rental-warsaw/"},
+    "gta":      {"ru": "arenda-ps5-gta-6-varshava/", "uk": "orenda-ps5-gta-6-varshava/", "en": "gta-6-ps5-rental-warsaw/"},
     "vr":       {"ru": "arenda-ps-vr2-varshava/", "uk": "orenda-ps-vr2-varshava/", "en": "ps-vr2-rental-warsaw/"},
     "hookah":   {"ru": "kalyan-na-dom-varshava/", "uk": "kalyan-dodomu-varshava/", "en": "hookah-delivery-warsaw/"},
     "games":    {"ru": "igry/",                   "uk": "igry/",                   "en": "games/"},
@@ -89,6 +90,10 @@ def offers_for(key, lang, ui):
     if key in ("home", "consoles"):
         for c in prices["consoles"]:
             out.append(offer(names[c["id"]], url("consoles", lang, True), c["d1"]))
+    if key == "gta":
+        for c in prices["consoles"]:
+            if c["id"] in ("ps5", "ps5pro"):
+                out.append(offer(names["gta_" + c["id"]], url("gta", lang, True), c["d1"]))
     if key in ("home", "vr"):
         out.append(offer(names["vr2"], url("vr", lang, True), prices["vr"]["d1"]))
     if key in ("home", "hookah"):
@@ -124,7 +129,7 @@ def jsonld(key, lang, ui, faq_items):
     graph.append({"@type": "WebPage", "@id": page_url + "#webpage", "url": page_url,
                   "name": ui["pages"][key]["title"], "inLanguage": lang,
                   "isPartOf": {"@id": f"{SITE}/#website"}, "about": {"@id": biz_id}})
-    if key in ("consoles", "vr", "hookah"):
+    if key in ("consoles", "gta", "vr", "hookah"):
         graph.append({"@type": "Service", "name": ui["pages"][key]["og_title"], "serviceType": ui["pages"][key]["crumb"],
                       "provider": {"@id": biz_id}, "areaServed": {"@type": "City", "name": "Warszawa"},
                       "url": page_url, "offers": offers_for(key, lang, ui)})

@@ -70,7 +70,7 @@
   <section class="section section-flush" aria-label="Что ещё можно взять">
     <div class="wrap cross">
       {% if settings.blocks.gta %}
-      <a class="cross-card is-game reveal" href="{{ url('games') }}"><span class="eyebrow is-game">Новинка · {{ settings.gta_release }}</span><b>GTA VI на наших PS5 с первого дня</b><span class="link-arrow">Все игры</span></a>
+      <a class="cross-card is-game reveal" href="{{ url('gta') }}"><span class="eyebrow is-game">Новинка · {{ settings.gta_release }}</span><b>GTA VI на наших PS5 с первого дня</b><span class="link-arrow">PS5 с GTA VI</span></a>
       {% endif %}
       <a class="cross-card is-game reveal" href="{{ url('vr') }}"><span class="eyebrow is-game">PS5 + VR2</span><b>Виртуальная реальность со скидкой {{ P.vr.bundle_discount }}%</b><span class="link-arrow">Аренда PS VR2</span></a>
       <a class="cross-card is-hookah reveal" href="{{ url('hookah') }}"><span class="eyebrow is-hookah">18+</span><b>Добавь кальян — получится готовый вечер</b><span class="link-arrow">Кальян на дом</span></a>

@@ -21,8 +21,8 @@ FF = f"""
 @font-face{{font-family:Mono;src:url({furl('jetbrains-mono-cyrillic-wght-normal.woff2')});font-weight:100 900;unicode-range:U+0400-04FF}}
 @font-face{{font-family:Mono;src:url({furl('jetbrains-mono-latin-wght-normal.woff2')});font-weight:100 900}}
 """
-ACC = {"home": "#E03CFF", "consoles": "#B6FF3B", "vr": "#B6FF3B", "games": "#B6FF3B", "hookah": "#FF6B2C", "terms": "#E03CFF"}
-ICON = {"consoles": "i-gamepad", "vr": "i-vr", "games": "i-gamepad", "hookah": "i-hookah", "terms": "i-chat"}
+ACC = {"home": "#E03CFF", "consoles": "#B6FF3B", "gta": "#B6FF3B", "vr": "#B6FF3B", "games": "#B6FF3B", "hookah": "#FF6B2C", "terms": "#E03CFF"}
+ICON = {"consoles": "i-gamepad", "gta": "i-gamepad", "vr": "i-vr", "games": "i-gamepad", "hookah": "i-hookah", "terms": "i-chat"}
 
 def og_html(lang, key, title, sub):
     a = ACC[key]

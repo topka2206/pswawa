@@ -1,0 +1,76 @@
+{% extends "base.j2" %}
+{% import "macros.j2" as m %}
+{% set P = prices %}
+{% set ps5 = P.consoles|selectattr("id", "equalto", "ps5")|first %}
+{% set pro = P.consoles|selectattr("id", "equalto", "ps5pro")|first %}
+{% block sticky_item %}ps5{% endblock %}
+{% block main %}
+  {{ m.subhero(ui, settings,
+     "Rent a PS5 with GTA VI in Warsaw",
+     "GTA VI launches on " ~ settings.gta_release ~ " — on PS5 and Xbox Series only. Don't buy a 2,500 zł console for one game: we'll bring a PS5 with GTA VI to your place, connect it to your TV and pick it up when you're done.",
+     "i-gamepad", "is-game", "ps5", "Book a PS5 with GTA VI",
+     extra=("GTA VI weekend — " ~ ((ps5.d2 * 2)|zl) ~ " zł for 2 days") if ps5.d2 else None) }}
+
+  <!-- ============ PACKAGES ============ -->
+  <section class="section section-tight" id="prices" aria-labelledby="h-packs">
+    <div class="wrap">
+      {{ m.head("Packages, zł", "How much it costs to play GTA VI", "h-packs", "The game is already on the console and included in the rental price. So are delivery, setup and 2 controllers.", cls="is-game") }}
+      <div class="models">
+        <article class="model reveal is-game"><h3 class="h3">First night</h3><p>1 day with a PS5. Try Vice City and see if it hooks you.</p><span class="num">{{ ps5.d1|zl }} zł</span></article>
+        <article class="model reveal is-game"><h3 class="h3">GTA weekend</h3><p>2 days: we drop it off Friday and pick it up Sunday. The most popular option.</p><span class="num">{% if ps5.d2 %}{{ (ps5.d2 * 2)|zl }} zł{% else %}{{ ui.in_dm }}{% endif %}</span></article>
+        <article class="model reveal is-game"><h3 class="h3">Finish the story</h3><p>5 days on a PS5 — enough to play through the main story at your own pace.</p><span class="num">{% if ps5.d5 %}{{ ps5.d5|zl }} zł{% else %}{{ ui.in_dm }}{% endif %}</span></article>
+      </div>
+      <div class="deal reveal is-game">
+        <b>Big TV? Get the PS5 Pro</b>
+        <span>Sharper picture, steadier frame rate. {{ pro.d1|zl }} zł per day{% if pro.d2 %}, weekend — {{ (pro.d2 * 2)|zl }} zł{% endif %}.</span>
+      </div>
+      <div class="btn-row reveal">
+        {{ m.ig(settings, "Book a GTA weekend", "ps5", "gta-pack", cls="btn btn-lime", icon=false) }}
+        {{ m.ig(settings, "PS5 Pro with GTA VI", "ps5pro", "gta-pack", cls="btn btn-outline", icon=false) }}
+      </div>
+      <p class="prices-more reveal">We have a limited number of consoles with GTA VI — the first weekends after launch get booked in advance. Refundable deposit — {{ P.console_deposit }} zł. <a href="{{ url('consoles') }}">All PS5 rental prices</a></p>
+    </div>
+  </section>
+
+  <!-- ============ RENT VS BUY ============ -->
+  <section class="section" aria-labelledby="h-why">
+    <div class="wrap">
+      {{ m.head("Do the maths", "Why rent instead of buying", "h-why") }}
+      <ul class="why why-3 reveal">
+        <li><b>No 2,500 zł upfront</b><span>A new PS5 plus the game costs well over 2,500 zł. A GTA VI weekend — {% if ps5.d2 %}{{ (ps5.d2 * 2)|zl }} zł{% else %}a fraction of that{% endif %}.</span></li>
+        <li><b>No console of your own needed</b><span>GTA VI isn't coming to PS4. No need to upgrade for one game.</span></li>
+        <li><b>Nothing gathering dust</b><span>Done with the story — we take it back. Want more — we'll bring it again.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="section" id="how-it-works" aria-labelledby="h-how">
+    <div class="wrap">
+      {{ m.head("How it works", "Three steps to Vice City", "h-how") }}
+      <ol class="steps">
+        <li class="step reveal"><span class="step-n" aria-hidden="true">01</span><h3 class="h3">DM us on Instagram</h3><p>Date, how many days and where to deliver. You can book {{ settings.gta_release }} and the first weekends in advance.</p></li>
+        <li class="step reveal"><span class="step-n" aria-hidden="true">02</span><h3 class="h3">We deliver and connect</h3><p>A PS5 with GTA VI already installed — hooked up to your TV and Wi‑Fi. Nothing to download.</p></li>
+        <li class="step reveal"><span class="step-n" aria-hidden="true">03</span><h3 class="h3">We pick it up</h3><p>Whenever you say. Want to keep playing — we'll extend.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ CROSS-SELL ============ -->
+  <section class="section section-flush" aria-label="What else you can add">
+    <div class="wrap cross">
+      <a class="cross-card is-game reveal" href="{{ url('games') }}"><span class="eyebrow is-game">On the account</span><b>Besides GTA VI — FC, Mortal Kombat, It Takes Two and more</b><span class="link-arrow">All games</span></a>
+      <a class="cross-card is-hookah reveal" href="{{ url('hookah') }}"><span class="eyebrow is-hookah">18+</span><b>GTA night with a hookah — we'll bring both</b><span class="link-arrow">Hookah delivery</span></a>
+    </div>
+  </section>
+
+  {{ m.faq_section(faq, ui, title="Questions about renting a PS5 with GTA VI") }}
+
+  <section class="section">
+    <div class="wrap final reveal">
+      <h2 class="h2">Vice City is waiting</h2>
+      <p>Send us a date — we'll reserve a PS5 with GTA VI.</p>
+      {{ m.ig(settings, ui.book, "ps5", "final") }}
+    </div>
+  </section>
+{% endblock %}

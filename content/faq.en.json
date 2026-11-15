@@ -22,7 +22,8 @@
       "pages": [
         "home",
         "consoles",
-        "games"
+        "games",
+        "gta"
       ]
     },
     {
@@ -114,6 +115,41 @@
         "vr",
         "hookah",
         "games"
+      ]
+    },
+    {
+      "q": "When can I play GTA VI?",
+      "a": "From November 19 — we deliver PS5s with the game on launch day. Bookings for the first days and weekends are open now: DM us on Instagram with the date and address.",
+      "pages": [
+        "gta"
+      ]
+    },
+    {
+      "q": "How much is a PS5 with GTA VI for the weekend?",
+      "a": "Same as a regular PS5 rental — the game is included: 2 days — 160 zł, 1 day — 100 zł, 5 days — 250 zł. A PS5 Pro for the weekend is 170 zł. Delivery and setup included.",
+      "pages": [
+        "gta"
+      ]
+    },
+    {
+      "q": "Will GTA VI run on a PS4 Pro or an older console?",
+      "a": "No. GTA VI is only on PS5 and Xbox Series, so for GTA VI we bring a PS5 or PS5 Pro.",
+      "pages": [
+        "gta"
+      ]
+    },
+    {
+      "q": "Can two people play GTA VI together?",
+      "a": "GTA VI is single-player. You still get a second controller: the account has FC, Mortal Kombat, It Takes Two and other two-player games.",
+      "pages": [
+        "gta"
+      ]
+    },
+    {
+      "q": "Can I extend the rental if I haven't finished?",
+      "a": "Yes. DM us before the rental ends — we'll extend at the price of the extra days, as long as the console isn't booked.",
+      "pages": [
+        "gta"
       ]
     }
   ]

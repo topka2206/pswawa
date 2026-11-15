@@ -76,8 +76,8 @@
   </div>
 </header>
 <nav class="mobile-nav" id="mobile-nav" aria-label="{{ ui.mobile_menu }}">
-  {% for k in ["consoles", "vr", "hookah", "games", "terms"] %}
-  <a href="{{ url(k) }}">{{ ui.nav_mobile_terms if k == "terms" else ui.nav[k] }}</a>
+  {% for k in ["consoles", "gta", "vr", "hookah", "games", "terms"] %}
+  <a href="{{ url(k) }}">{{ ui.nav_mobile_terms if k == "terms" else (ui.footer.links.gta if k == "gta" else ui.nav[k]) }}</a>
   {% endfor %}
 </nav>
 
@@ -94,7 +94,7 @@
   <div class="wrap">
     <a href="{{ url('home') }}" aria-label="{{ ui.home_aria }}" class="foot-logo">{{ LOGO_DECOR }}</a>
     <nav class="foot-links" aria-label="{{ ui.footer.nav_aria }}">
-      {% for k in ["consoles", "vr", "hookah", "games", "terms"] %}
+      {% for k in ["consoles", "gta", "vr", "hookah", "games", "terms"] %}
       <a href="{{ url(k) }}">{{ ui.footer.links[k] }}</a>
       {% endfor %}
       <a href="{{ settings.instagram_profile }}" target="_blank" rel="noopener" data-ig data-item="general" data-place="footer">Instagram {{ settings.instagram_handle }}</a>
